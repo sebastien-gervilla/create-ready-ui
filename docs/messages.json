@@ -1,0 +1,20 @@
+{
+    "fail": {
+        "connError": "Cannot download template from repository. Make sure your connection is ok.",
+        "extractError": "An error occured while extracting the template archive.",
+        "movingError": "An error occured while moving files.",
+        "missingName": "Missing project name."
+    },
+    "info": {
+        "extracing": "Extracting template into : ",
+        "gitInit": "Initializing empty repository...",
+        "installDeps": "Installing dependencies..."
+    },
+    "help": {
+        "folderMayExist": "This folder may already exist : ",
+        "tryRemoveFolder": "If this is the case, try removing it."
+    },
+    "success": {
+        "created": " Project created and dependencies installed! "
+    }
+}
