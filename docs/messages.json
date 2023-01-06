@@ -1,9 +1,11 @@
 {
     "fail": {
-        "connError": "Cannot download template from repository. Make sure your connection is ok.",
-        "extractError": "An error occured while extracting the template archive.",
+        "cloneError": "Coudln't clone repository. Make sure your connection is ok.",
+        "mkdirError": "Coudln't create directory.",
         "movingError": "An error occured while moving files.",
-        "missingName": "Missing project name."
+        "missingName": "Missing project name.",
+        "depsError": "Couldn't install dependencies.",
+        "fileError": "Couldn't remove necessary files."
     },
     "info": {
         "extracing": "Extracting template into : ",
