@@ -4,8 +4,7 @@ import chalk from 'chalk';
 import { 
     createDirectory, 
     tryCloneRepo, 
-    tryInstallDeps, 
-    tryRemoveFile
+    tryInstallDeps
 } from './helper-functions.js';
 import { exitProcces } from './exit-process.js';
 

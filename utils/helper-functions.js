@@ -1,4 +1,4 @@
-import { exec, execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import fs from 'node:fs';
 
 export const createDirectory = async (path) => {
@@ -33,7 +33,7 @@ export const tryInstallDeps = async () => {
 }
 
 const execute = (command) => new Promise((resolve, reject) => {
-    exec(command, (error, stdout, stderr) => {
+    exec(command, (error, stdout) => {
         error ? reject(error) : resolve(stdout);
     })
 })
