@@ -30,6 +30,11 @@ export const generateTemplate = async (newProjectPath, outDirectory) => {
         }
     }
 
+    if (newProjectPath === '.' && outDirectory.includes(' ')) {
+        spinner.fail(chalk.red(messages.fail.wrongDirName));
+        exitProcces(3);
+    }
+
     spinner.text = 'Downloading files...';
     const cloneSuccess = await tryCloneRepo(target.url, outDirectory);
     if (!cloneSuccess) {

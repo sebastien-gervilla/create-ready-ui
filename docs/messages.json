@@ -5,7 +5,8 @@
         "movingError": "An error occured while moving files.",
         "missingName": "Missing project name.",
         "depsError": "Couldn't install dependencies.",
-        "fileError": "Couldn't remove necessary files."
+        "fileError": "Couldn't remove necessary files.",
+        "wrongDirName": "The project path musn't contain spaces."
     },
     "info": {
         "extracing": "Extracting template into : ",
