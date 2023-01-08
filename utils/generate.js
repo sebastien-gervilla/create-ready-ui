@@ -16,16 +16,18 @@ const target = {
 };
 
 const spinner = ora({ text: '' });
-export const generateTemplate = async (projectName, outDirectory) => {
+export const generateTemplate = async (newProjectPath, outDirectory) => {
 
     spinner.start('Creating template...');
-    const createSucces = await createDirectory(projectName);
-    if (!createSucces) {
-        spinner.fail(chalk.red(messages.fail.mkdirError));
-        exitProcces(2, [
-            console.log(messages.help.folderMayExist + chalk.grey.underline(outDirPath)),
-            console.log(messages.help.tryRemoveFolder)
-        ]);
+    if (newProjectPath !== '.') {
+        const createSucces = await createDirectory(newProjectPath);
+        if (!createSucces) {
+            spinner.fail(chalk.red(messages.fail.mkdirError));
+            exitProcces(2, [
+                console.log(messages.help.folderMayExist + chalk.grey.underline(outDirPath)),
+                console.log(messages.help.tryRemoveFolder)
+            ]);
+        }
     }
 
     spinner.text = 'Downloading files...';
