@@ -3,6 +3,7 @@ import chalk from 'chalk';
 
 import { 
     createDirectory, 
+    isGitInstalled, 
     tryCloneRepo, 
     tryInstallDeps
 } from './helper-functions.js';
