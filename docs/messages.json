@@ -1,5 +1,6 @@
 {
     "fail": {
+        "gitError": "Git not installed : https://git-scm.com/",
         "cloneError": "Coudln't clone repository. Make sure your connection is ok.",
         "mkdirError": "Coudln't create directory.",
         "movingError": "An error occured while moving files.",

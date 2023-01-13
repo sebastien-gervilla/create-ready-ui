@@ -32,6 +32,15 @@ export const tryInstallDeps = async () => {
     return true;
 }
 
+export const isGitInstalled = async () => {
+    try {
+        await execute('git --version');
+    } catch (error) {
+        return false;
+    }
+    return true;
+}
+
 const execute = (command) => new Promise((resolve, reject) => {
     exec(command, (error, stdout) => {
         error ? reject(error) : resolve(stdout);
