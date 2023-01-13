@@ -25,6 +25,6 @@ const targets = {
     if (process.argv[3] === '--vue')
         target = targets.vue;
 
-    const projectDirectory = path.resolve(process.cwd(), projectName, target);
-    await generateTemplate(projectName, projectDirectory);
+    const projectDirectory = path.resolve(process.cwd(), projectName);
+    await generateTemplate(projectName, projectDirectory, target);
 })();
