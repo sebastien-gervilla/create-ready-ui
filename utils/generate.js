@@ -1,54 +1,55 @@
 import ora from 'ora';
 import chalk from 'chalk';
+import { temporaryDirectory } from 'tempy';
 
 import { 
-    createDirectory, 
     isGitInstalled, 
     tryCloneRepo, 
-    tryInstallDeps
+    tryFindConflict, 
+    tryInstallDeps,
+    tryMoveFiles
 } from './helper-functions.js';
 import { exitProcces } from './exit-process.js';
 
 import messages from '../docs/messages.json' assert { type: "json" };
 
 const spinner = ora({ text: '' });
-export const generateTemplate = async (newProjectPath, outDirectory, target) => {
+const ERROR = chalk.red('ERROR : ');
 
-    spinner.start('Creating template...');
-    if (newProjectPath !== '.') {
-        const createSucces = await createDirectory(newProjectPath);
-        if (!createSucces) {
-            spinner.fail(chalk.red(messages.fail.mkdirError));
-            exitProcces(2, [
-                console.log(messages.help.folderMayExist + chalk.grey.underline(outDirPath)),
-                console.log(messages.help.tryRemoveFolder)
-            ]);
-        }
-    }
+export const generateTemplate = async (outDirectory, target) => {
 
-    if (newProjectPath === '.' && outDirectory.includes(' ')) {
-        spinner.fail(chalk.red(messages.fail.wrongDirName));
-        exitProcces(3);
-    }
-
-    spinner.text = 'Downloading files...';
-
+    spinner.start(messages.info.downloading);
     const gitSuccess = await isGitInstalled();
     if (!gitSuccess) {
-        spinner.fail(chalk.red(messages.fail.gitFailed));
+        spinner.fail(ERROR + messages.fail.gitFailed);
+        exitProcces(1);
+    }
+
+    const tempDir = temporaryDirectory();
+    const cloneSuccess = await tryCloneRepo(target.url, tempDir);
+    if (!cloneSuccess) {
+        spinner.fail(ERROR + messages.fail.cloneError);
+        exitProcces(2);
+    }
+
+    spinner.text = messages.info.conflicts;
+    const conflitingFile = await tryFindConflict(tempDir, outDirectory);
+    if (conflitingFile) {
+        spinner.fail(ERROR + messages.fail.conflictError + chalk.blue(conflitingFile));
         exitProcces(3);
     }
 
-    const cloneSuccess = await tryCloneRepo(target.url, outDirectory);
-    if (!cloneSuccess) {
-        spinner.fail(chalk.red(messages.fail.cloneError));
+    spinner.text = messages.info.importing;
+    const moveSuccess = await tryMoveFiles(tempDir, outDirectory);
+    if (!moveSuccess) {
+        spinner.fail(ERROR + messages.fail.movingError);
         exitProcces(4);
     }
 
-    spinner.text = 'Installing dependencies...';
-    const depsSuccess = await tryInstallDeps();
+    spinner.text = messages.info.installDeps;
+    const depsSuccess = await tryInstallDeps(outDirectory);
     if (!depsSuccess) {
-        spinner.fail(chalk.red(messages.fail.depsError));
+        spinner.fail(ERROR + messages.fail.depsError);
         exitProcces(5);
     }
     

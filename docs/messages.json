@@ -1,17 +1,17 @@
 {
     "fail": {
+        "missingName": "Missing project name.",
         "gitError": "Git not installed : https://git-scm.com/",
         "cloneError": "Coudln't clone repository. Make sure your connection is ok.",
-        "mkdirError": "Coudln't create directory.",
+        "conflictError": "Conflict found in target directory : ",
         "movingError": "An error occured while moving files.",
-        "missingName": "Missing project name.",
         "depsError": "Couldn't install dependencies.",
-        "fileError": "Couldn't remove necessary files.",
         "wrongDirName": "The project path musn't contain spaces."
     },
     "info": {
-        "extracing": "Extracting template into : ",
-        "gitInit": "Initializing empty repository...",
+        "downloading": "Downloading files...",
+        "conflicts": "Looking for conflicts...",
+        "importing": "Importing files...",
         "installDeps": "Installing dependencies..."
     },
     "help": {
