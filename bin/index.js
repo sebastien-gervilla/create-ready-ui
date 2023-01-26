@@ -26,5 +26,5 @@ const targets = {
         target = targets.vue;
 
     const projectDirectory = path.resolve(process.cwd(), projectName);
-    await generateTemplate(projectName, projectDirectory, target);
+    await generateTemplate(projectDirectory, target);
 })();

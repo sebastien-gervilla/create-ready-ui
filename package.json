@@ -1,6 +1,6 @@
 {
   "name": "create-ready-ui",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -24,7 +24,9 @@
   "homepage": "https://github.com/sebastien-gervilla/create-ready-ui#readme",
   "dependencies": {
     "chalk": "^5.2.0",
+    "fs-extra": "^11.1.0",
     "ora": "^6.1.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "tempy": "^3.0.0"
   }
 }
